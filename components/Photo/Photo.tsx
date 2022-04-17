@@ -34,7 +34,7 @@ const Photo: React.FC<Photo> = ({ metadata, hash }) => {
                 <chakra.span fontWeight="500">File Name</chakra.span>: {data.fileName}
               </Text>
               <Text isTruncated>
-                <chakra.span fontWeight="500">Hash</chakra.span>: {data.fileName}
+                <chakra.span fontWeight="500">Hash</chakra.span>: {data.hash}
               </Text>
               <Text>
                 <chakra.span fontWeight="500">Description</chakra.span>: {data?.description}

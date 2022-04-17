@@ -1,5 +1,6 @@
-import { Box, Center, chakra, Spinner, Text } from '@chakra-ui/react';
+import { Box, Center, chakra, Text, Skeleton, SkeletonText } from '@chakra-ui/react';
 import Image from 'next/image';
+import { useInView } from 'react-intersection-observer';
 import { useQuery } from 'react-query';
 
 type Photo = {
@@ -8,16 +9,24 @@ type Photo = {
 };
 
 const Photo: React.FC<Photo> = ({ metadata, hash }) => {
-  const { data, isLoading } = useQuery(hash, () =>
+  const { ref, inView } = useInView({
+    threshold: 0,
+    triggerOnce: true,
+  });
+
+  const { data, isLoading } = useQuery([hash, inView], () =>
     fetch(`https://ipfs.infura.io/ipfs/${metadata}`).then((res) => res.json())
   );
 
   return (
-    <Box minH="250px" width="350px" border="1px solid #e5e5e5" borderRadius="10px">
+    <Box minH="350px" width="350px" border="1px solid #e5e5e5" borderRadius="10px" ref={ref}>
       {isLoading && (
-        <Center height="100%">
-          <Spinner />
-        </Center>
+        <>
+          <Skeleton height="300px" width="full" />
+          <Box px={3} pb={5}>
+            <SkeletonText mt="4" noOfLines={3} spacing="4" />
+          </Box>
+        </>
       )}
       {!isLoading && data && (
         <>

@@ -68,7 +68,7 @@ const AddPhotoDrawer: React.FC<AddPhotoDrawer> = ({ isOpen, onClose, retrieveIma
       const storedImages = retrieveImages();
       const imageAlreadyExists = storedImages.find((image: Record<string, any>) => image.hash === md5);
       if (imageAlreadyExists) {
-        setFileError('File already exists');
+        setFileError('File already exists.');
       } else {
         setFileHash(md5);
       }

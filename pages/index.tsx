@@ -3,6 +3,7 @@ import AddPhotoDrawer from '@components/AddPhotoDrawer';
 import Navbar from '@components/Navbar';
 import { STORAGE_KEY } from '@constants/storageKey';
 import type { NextPage } from 'next';
+import Head from 'next/head';
 import { useState, useEffect } from 'react';
 
 import Photo from '@components/Photo';
@@ -30,6 +31,10 @@ const Home: NextPage = () => {
 
   return (
     <Box>
+      <Head>
+        <title>IPFS Photo Gallery</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Navbar onOpen={onOpen} />
 
       <Box px={10}>

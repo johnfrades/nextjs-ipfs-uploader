@@ -41,8 +41,8 @@ const Home: NextPage = () => {
           <Box mt={5}>
             {myImages?.length > 0 && (
               <Wrap spacing="3rem">
-                {myImages.map((image: any) => (
-                  <WrapItem>
+                {myImages.map((image) => (
+                  <WrapItem key={image.hash}>
                     <Photo metadata={image.metadata} hash={image.hash} key={image.hash} />
                   </WrapItem>
                 ))}
